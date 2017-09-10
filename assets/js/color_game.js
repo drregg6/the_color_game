@@ -9,11 +9,13 @@ var header = document.querySelector('header');
 
 var colorsArr = [];
 var winningColorId = 0;
+var isWon = true;
 
 startGame.addEventListener('click', function() {
     header.style.backgroundColor = '#69acdd';
     colorsArr = [];
     winningColorId = 0;
+    isWon = !isWon;
     
     choices.forEach(function(choice) {
         choice.classList.remove('invisible');
@@ -29,16 +31,24 @@ startGame.addEventListener('click', function() {
 
 choices.forEach(function(choice) {
     choice.addEventListener('click', function() {
-        if (choice.getAttribute('id') === String(winningColorId)) {
-            console.log('You Win!');
-            choices.forEach(function(choice) {
-                choice.classList.remove('invisible');
-                choice.style.backgroundColor = colorsArr[winningColorId];
-            });
-            header.style.backgroundColor = colorsArr[winningColorId];
+        if (isWon) {
+            return false;
         } else {
-            this.classList.add('invisible');
-            console.log('Keep trying...');
+            if (choice.getAttribute('id') === String(winningColorId)) {
+                console.log('You Win!');
+                choices.forEach(function(choice) {
+                    choice.classList.remove('invisible');
+                    choice.style.backgroundColor = colorsArr[winningColorId];
+                });
+                isWon = !isWon;
+                header.style.backgroundColor = colorsArr[winningColorId];
+            } else {
+                this.classList.add('invisible');
+                console.log('Keep trying...');
+            }
         }
     });
 });
+
+
+
