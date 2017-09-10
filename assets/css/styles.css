@@ -60,3 +60,10 @@ header .text p {
     margin: 10px;
     background: #fff;
 }
+
+@media (min-width: 660px) {
+    .choice {
+        width: 150px;
+        height: 150px;
+    }
+}
