@@ -1,3 +1,8 @@
+// TODO: fade effect
+// TODO: simplify code with an NewGame Object?
+// TODO: implement easy mode and hard mode
+
+
 var startGame = document.querySelector('#start-game');
 var choices = document.querySelectorAll('.choice');
 var winningColor = document.querySelector('h1');
