@@ -1,7 +1,8 @@
-var startGame = document.querySelector('button');
+var startGame = document.querySelector('#start-game');
 var choices = document.querySelectorAll('.choice');
 var winningColor = document.querySelector('h1');
 var header = document.querySelector('header');
+var feedback = document.querySelector('#feedback');
 
 var colorsArr = []; // holds the six current random colors
 var winningColorId = 0; // holds the winning id number
@@ -14,6 +15,7 @@ startGame.addEventListener('click', function() {
     colorsArr = []; // ready to hold six new random colors
     winningColorId = 0;  // ready to hold a new winning color id
     isWon = !isWon; // ready to make the .choices clickable
+    feedback.textContent = ''; // reset feedback
     
     choices.forEach(function(choice) {
         choice.classList.remove('invisible'); // ensure all .choices are clickable
@@ -36,7 +38,7 @@ choices.forEach(function(choice) {
             return false; // does not allow 'click' functionality
         } else {
             if (choice.getAttribute('id') === String(winningColorId)) { // the choice is correct
-                console.log('You Win!'); // winner winner chicken dinner!
+                feedback.textContent = 'You win!' // winner winner chicken dinner!
                 choices.forEach(function(choice) {
                     choice.classList.remove('invisible'); // make all .choices visible again
                     choice.style.backgroundColor = colorsArr[winningColorId]; // update the bgColors to the winning color
@@ -45,7 +47,7 @@ choices.forEach(function(choice) {
                 header.style.backgroundColor = colorsArr[winningColorId]; // update the header bgColor to the winning color
             } else {
                 this.classList.add('invisible'); // hide the wrong answer and request user tries again
-                console.log('Keep trying...');
+                feedback.textContent = 'Keep trying...';
             }
         }
     });

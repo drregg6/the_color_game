@@ -31,7 +31,9 @@ header .text h1 {
 }
 
 header .text h1,
-header .text p {
+header .text p,
+.container,
+.container p {
     margin: 0;
     padding: 0;
 }
@@ -39,10 +41,29 @@ header .text p {
 .container {
     width: 100%;
     background: #fff;
+    height: 35px;
+    
+    font-weight: bold;
+    color: #69acdd;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
-.container button {
-    padding: 5px 0;
+.start-game,
+#easy,
+#hard {
+    cursor: pointer;
+}
+
+#easy {
+    margin-right: 10px;
+}
+
+.active {
+    background: #69acdd;
+    color: #fff;
 }
 
 .game {
@@ -61,13 +82,13 @@ header .text p {
     
     margin: 10px;
     background: #fff;
-    opacity: 1;
     
-    transition: opacity 2s;
+    /* the "fade" effect is difficult to do with just CSS and JS */
+    transition: background 2s;
 }
 
 .invisible {
-    opacity: 0.1;
+    background: #3f3f3f;
 }
 
 @media (min-width: 660px) {
