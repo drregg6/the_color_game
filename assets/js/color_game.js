@@ -1,18 +1,44 @@
 // TODO: fade effect
 // TODO: simplify code with an NewGame Object?
-// TODO: implement easy mode and hard mode
+// TODO: easy mode should remove the entire second row
 
 
 var startGame = document.querySelector('#start-game');
 var choices = document.querySelectorAll('.choice');
+var groups = document.querySelectorAll('.group');
 var winningColor = document.querySelector('h1');
 var header = document.querySelector('header');
 var feedback = document.querySelector('#feedback');
+var easyMode = document.querySelector('#easy');
+var hardMode = document.querySelector('#hard');
 
 var colorsArr = []; // holds the six current random colors
 var winningColorId = 0; // holds the winning id number
 var isWon = true; // activates whether or not .choices is clickable
 
+
+
+easyMode.addEventListener('click', function() {
+    if (easyMode.classList.contains('active')) {
+        return;
+    } else {
+        easyMode.classList.add('active');
+        hardMode.classList.remove('active');
+        groups[1].classList.add('invisible');
+    }
+});
+
+
+
+hardMode.addEventListener('click', function() {
+    if (hardMode.classList.contains('active')) {
+        return;
+    } else {
+        hardMode.classList.add('active');
+        easyMode.classList.remove('active');
+        groups[1].classList.remove('invisible');
+    }
+});
 
 
 startGame.addEventListener('click', function() {

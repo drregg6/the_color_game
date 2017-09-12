@@ -89,7 +89,7 @@ header .text p,
 }
 
 .invisible {
-    background: #3f3f3f;
+    visibility: hidden;
 }
 
 @media (min-width: 660px) {
