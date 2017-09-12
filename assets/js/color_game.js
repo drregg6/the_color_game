@@ -6,6 +6,8 @@
 var startGame = document.querySelector('#start-game');
 var choices = document.querySelectorAll('.choice');
 var groups = document.querySelectorAll('.group');
+var firstRow = document.querySelectorAll('.group:first-child .choice');
+var game = document.querySelector('.game');
 var winningColor = document.querySelector('h1');
 var header = document.querySelector('header');
 var feedback = document.querySelector('#feedback');
@@ -48,13 +50,26 @@ startGame.addEventListener('click', function() {
     isWon = !isWon; // ready to make the .choices clickable
     feedback.textContent = ''; // reset feedback
     
-    choices.forEach(function(choice) {
-        choice.classList.remove('invisible'); // ensure all .choices are clickable
+    if (hardMode.classList.contains('active')) {
+        choices.forEach(function(choice) {
+            choice.classList.remove('invisible'); // ensure all .choices are clickable
+
+            var randColor = `rgb(${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)})`; // create a new backgroundColor for each choice
+            choice.style.backgroundColor = randColor; // update its backgroundColor
+            colorsArr.push(randColor); // push the option into the arr
+        });
+    } else {
+        var easyChoices = document.querySelectorAll('.group:first-child .choice');
         
-        var randColor = `rgb(${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)})`; // create a new backgroundColor for each choice
-        choice.style.backgroundColor = randColor; // update its backgroundColor
-        colorsArr.push(randColor); // push the option into the arr
-    });
+        easyChoices.forEach(function(easyChoice) {
+            easyChoice.classList.remove('invisible');
+            
+            var randColor = `rgb(${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)})`; // create a new backgroundColor for each choice
+            easyChoice.style.backgroundColor = randColor; // update its backgroundColor
+            colorsArr.push(randColor); // push the option into the arr
+        });
+        
+    }
     
     winningColorId = Math.floor(Math.random() * colorsArr.length); // select a random color
     winningColor.innerText = `${colorsArr[winningColorId]}`; // update the text in the header
